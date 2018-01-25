@@ -5,3 +5,7 @@ pydub==0.20.0
 python_daemon==2.1.2
 lockfile>=0.10
 sounddevice==0.3.10
+pyttsx==1.1
+SpeechRecognition==3.8.1
+microphone==0.0.1
+gTTS==1.2.2
