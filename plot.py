@@ -1,6 +1,6 @@
 import pyaudio
 import numpy as np
-import matplotlib.pyplot as plt
+import datetime
 
 np.set_printoptions(suppress=True) # don't use scientific notation
 
@@ -12,7 +12,7 @@ stream=p.open(format=pyaudio.paInt16,channels=1,rate=RATE,input=True,
               frames_per_buffer=CHUNK) #uses default input device
 
 # create a numpy array holding a single read of audio data
-for i in range(10): #to it a few times just to see
+while(True): #to it a few times just to see
     data = np.fromstring(stream.read(CHUNK),dtype=np.int32)
     data = data * np.hanning(len(data)) # smooth the FFT by windowing data
     fft = abs(np.fft.fft(data).real)
@@ -20,7 +20,7 @@ for i in range(10): #to it a few times just to see
     freq = np.fft.fftfreq(CHUNK,1/RATE)
     freq = freq[:int(len(freq)/2)] # keep only first half
     freqPeak = freq[np.where(fft==np.max(fft))[0][0]]+1
-    print("peak frequency: %d Hz"%freqPeak)
+    print("peak frequency: %d Hz"%freqPeak, datetime.datetime.now().time())
 
     # uncomment this if you want to see what the freq vs FFT looks like
     #plt.plot(freq,fft)
