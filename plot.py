@@ -5,7 +5,7 @@ import datetime
 np.set_printoptions(suppress=True) # don't use scientific notation
 
 CHUNK = 4096 # number of data points to read at a time
-RATE = 44100 # time resolution of the recording device (Hz)
+RATE = 88200 # time resolution of the recording device (Hz)
 
 p=pyaudio.PyAudio() # start the PyAudio class
 stream=p.open(format=pyaudio.paInt16,channels=1,rate=RATE,input=True,
@@ -20,8 +20,9 @@ while(True): #to it a few times just to see
     freq = np.fft.fftfreq(CHUNK,1/RATE)
     freq = freq[:int(len(freq)/2)] # keep only first half
     freqPeak = freq[np.where(fft==np.max(fft))[0][0]]+1
+    #if freqPeak>500:
+    #    print("peak frequency: %d Hz"%freqPeak, datetime.datetime.now().time())
     print("peak frequency: %d Hz"%freqPeak, datetime.datetime.now().time())
-
     # uncomment this if you want to see what the freq vs FFT looks like
     #plt.plot(freq,fft)
     #plt.axis([0,4000,None,None])
