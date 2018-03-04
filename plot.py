@@ -8,15 +8,29 @@ CHUNK = 2048 # number of data points to read at a time
 RATE = 44100 # time resolution of the recording device (Hz)
 
 p=pyaudio.PyAudio() # start the PyAudio class
-stream=p.open(format=pyaudio.paInt16,channels=1,rate=RATE,input=True,input_device_index = 6,
+p2=pyaudio.PyAudio() # start the PyAudio class
+stream=p.open(format=pyaudio.paInt16,channels=1,rate=RATE,input=True,input_device_index = 2,
+              frames_per_buffer=CHUNK) #uses default input device
+stream2=p2.open(format=pyaudio.paInt16,channels=1,rate=RATE,input=True,input_device_index = 3,
               frames_per_buffer=CHUNK) #uses default input device
 
 # create a numpy array holding a single read of audio data
+e=0
+t=datetime.datetime.now().time().second
 while(True): #to it a few times just to see
+    c=datetime.datetime.now().time().second
+    if c!=t:
+        t=c
+        print(e)
+        e=0
     data = np.fromstring(stream.read(CHUNK, exception_on_overflow = False),dtype=np.int32)
     data = np.abs(data)
-    if np.max(data)>10**8:
-        print("peak :",np.max(data), "time :",datetime.datetime.now().time())
+    data2 = np.fromstring(stream2.read(CHUNK, exception_on_overflow = False),dtype=np.int32)
+    data2 = np.abs(data2)
+    if np.max(data)>0.5*10**8:
+        e+=datetime.datetime.now().time().microsecond
+    if np.max(data2)>0.2*10**8:
+        e-=datetime.datetime.now().time().microsecond
     #print("peak :",np.max(data), "time :",datetime.datetime.now().time())
     #data = data * np.hanning(len(data)) # smooth the FFT by windowing data
     #fft = abs(np.fft.fft(data).real)
@@ -36,4 +50,8 @@ while(True): #to it a few times just to see
 # close the stream gracefully
 stream.stop_stream()
 stream.close()
+stream2.stop_stream()
+stream2.close()
+p.terminate()
+p2.terminate()
 p.terminate()
