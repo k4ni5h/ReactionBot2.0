@@ -1,6 +1,6 @@
 import pyaudio
 import numpy as np
-import datetime
+import time
 
 np.set_printoptions(suppress=True) # don't use scientific notation
 
@@ -15,18 +15,19 @@ stream2=p2.open(format=pyaudio.paInt16,channels=1,rate=RATE,input=True,input_dev
               frames_per_buffer=CHUNK) #uses default input device
 
 # create a numpy array holding a single read of audio data
-e=0
-t=datetime.datetime.now().time()
+e=1.0
+t=time.time()
 while(True): #to it a few times just to see
-    c=datetime.datetime.now().time()
+    c=time.time()
+    if c>=t+1:
+        t=c
+        print(e)
+        e=1.0
     data = np.fromstring(stream.read(CHUNK, exception_on_overflow = False),dtype=np.int32)
     data = np.abs(data)
     data2 = np.fromstring(stream2.read(CHUNK, exception_on_overflow = False),dtype=np.int32)
     data2 = np.abs(data2)
-    if np.max(data)>0.5*10**8:
-        print("Source : 1 Peak :",np.max(data), "Time :",c)
-    if np.max(data2)>0.2*10**8:
-        print("Source : 2 Peak :",np.max(data), "Time :",c)
+    e=e*np.max(data)/np.max(data2)
     #print("peak :",np.max(data), "time :",datetime.datetime.now().time())
     #data = data * np.hanning(len(data)) # smooth the FFT by windowing data
     #fft = abs(np.fft.fft(data).real)
