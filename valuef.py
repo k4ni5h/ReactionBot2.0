@@ -26,12 +26,14 @@ stream2=p2.open(format=pyaudio.paInt16,
 # create a numpy array holding a single read of audio data
 e=0.0
 t=time.time()
-f=1.2
+f=1
+d=d2=0.0
 while(True): #to it a few times just to see
     c=time.time()
     if c>=t+1:
         t=c
-        print(e,math.degrees(math.atan(e)))
+        f=0.95*f+0.05*d/d2
+        print(e, f, math.degrees(math.atan(e)))
         e=1.0
         d=d2=0.0
     data = np.fromstring(stream.read(CHUNK, exception_on_overflow = False),
@@ -41,6 +43,8 @@ while(True): #to it a few times just to see
                           dtype=np.int32)
     data2 = np.abs(data2)
     e=e+(np.max(data)-f*np.max(data2))/(np.max(data)+f*np.max(data2))
+    d+=np.average(data)
+    d2+=np.average(data2)
 
 # close the stream gracefully
 stream.stop_stream()
@@ -50,4 +54,3 @@ stream2.close()
 p.terminate()
 p2.terminate()
 p.terminate()
-
