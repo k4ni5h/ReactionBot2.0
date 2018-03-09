@@ -16,7 +16,6 @@ def analyze_tone(text):
     try:
         r = requests.post(watsonUrl, auth=(username,password), headers = headers,
          data=data)
-        print(r.text)
         return r.text
     except:
         return False
@@ -33,13 +32,20 @@ def welcome():
  
 def display_results(data):
     data = json.loads(str(data))
-    print(data)
-    for i in data['document_tone']['tone_categories']:
-        print(i['category_name'])
-        print("-" * len(i['category_name']))
-        for j in i['tones']:
-            print(j['tone_name'].ljust(20),(str(round(j['score'] * 100,1)) + "%").rjust(10))
-        print()
+    print([data['document_tone']['tone_categories'][0]['tones'][i]['tone_name'] for i in range(5)])
+    print([data['document_tone']['tone_categories'][0]['tones'][i]['score'] for i in range(5)])
+    print([data['document_tone']['tone_categories'][1]['tones'][i]['tone_name'] for i in range(3)])
+    print([data['document_tone']['tone_categories'][1]['tones'][i]['score'] for i in range(3)])
+    print([data['document_tone']['tone_categories'][2]['tones'][i]['tone_name'] for i in range(5)])
+    print([data['document_tone']['tone_categories'][2]['tones'][i]['score'] for i in range(5)])
+    print([data['document_tone']['tone_categories'][2]['tones'][i]['tone_name'] for i in range(5)])
+    print([data['document_tone']['tone_categories'][2]['tones'][i]['score'] for i in range(5)])
+    #for i in data['document_tone']['tone_categories']:
+    #    print(i['category_name'])
+    #    print("-" * len(i['category_name']))
+    #    for j in i['tones']:
+    #        print(j['tone_name'].ljust(20),(str(round(j['score'] * 100,1)) + "%").rjust(10))
+    #    print()
     print()
  
 def main():
