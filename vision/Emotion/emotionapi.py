@@ -1,24 +1,24 @@
 import requests
 import json
-json_resp = requests.post( 'https://api-face.sightcorp.com/api/detect/',
-              data  = { 'app_key' : '48855f9ed48942d8bfeedbb3ff515e10' },
-              files = { 'img'     : ( 'filename', open( '/home/pi/Desktop/ReactionBot2.0/Emotion/test9.jpg', 'rb' ) ) } )
+def getemotion() :
+    json_resp = requests.post( 'https://api-face.sightcorp.com/api/detect/',
+              data  = { 'app_key' : 'e00f8c8746bf4b01b3f33b476cbf1e74' },
+              files = { 'img'     : ( 'filename', open( '/home/pi/Desktop/ReactionBot2.0/vision/Emotion/picam.jpg', 'rb' ) ) } )
 
-print (json_resp.text)
-apiresp =json.loads(json_resp.text)
-for person in apiresp['people']:
-    onlyemotion=(person['emotions'])
+    #print (json_resp.text)
+    apiresp =json.loads(json_resp.text)
+    for person in apiresp['people']:
+        onlyemotion=(person['emotions'])
 #for key,val in onlyemotion.items():
  #       exec(key + '=val')
 
-del onlyemotion["surprise"]
-del onlyemotion["disgust"]
+#del onlyemotion["surprise"]
+#del onlyemotion["disgust"]
 
-print (onlyemotion)
+    #print (onlyemotion)
 
-finalemotion = max(onlyemotion, key=lambda i: onlyemotion[i])
-print (finalemotion)
-
+        finalemotion = max(onlyemotion, key=lambda i: onlyemotion[i])
+        return(finalemotion)
 
 
 #if emotion == "happiness":
@@ -37,4 +37,3 @@ print (finalemotion)
 #         break
 
 # print(i)
-
