@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 import random
 from subprocess import Popen
-from emotionapi import getemotion
 k=random.randint(1,3)
-finalemotion=getemotion()
-def playmusic() :
+print(k)
+def playmusic(finalemotion) :
     if finalemotion=="happiness" :
         movie_path = '/home/pi/Desktop/ReactionBot2.0/Songs/happiness/1.mp3'
         omxp = Popen(['omxplayer',movie_path])

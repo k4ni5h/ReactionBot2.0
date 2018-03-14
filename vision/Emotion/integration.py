@@ -7,5 +7,5 @@ if action==0  :
     clickcam()
 emotion=getemotion()   
 print(emotion)
-playmusic() 
+playmusic(emotion) 
 action=1
