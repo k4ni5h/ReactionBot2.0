@@ -6,7 +6,7 @@ import speech_recognition as sr
 # Record Audio
 while(True):
     r = sr.Recognizer()
-    with sr.Microphone(2) as source:
+    with sr.Microphone(0) as source:
         print("Say something!")
         audio = r.listen(source)
     print(1)
