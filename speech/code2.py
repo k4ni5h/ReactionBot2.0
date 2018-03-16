@@ -4,9 +4,9 @@ import time
 import math
 
 import sys
+
 sys.path.insert(0, '/home/pi/Desktop/ReactionBot2.0/motion/')
 from funservo2 import rotat
-
 np.set_printoptions(suppress=True) # don't use scientific notation
 
 CHUNK = 2048 # number of data points to read at a time
@@ -30,16 +30,23 @@ stream2=p2.open(format=pyaudio.paInt16,
 # create a numpy array holding a single read of audio data
 e1=e2=1.0
 t=time.time()
+x=True
 while(True): #to it a few times just to see
     c=time.time()
     if c>=t+0.5:
         t=c
-        angle=2*math.degrees(math.atan(e1/(e2*1.1)))-90
+        angle=2*math.degrees(math.atan(e1/(e2*1.1)))
         print(angle)
-        if angle>45:
-			rotat(90-int(angle))
-        if angle<-45:
-			rotat(90-int(angle))
+        if int(angle)>135 and x:
+			x=False
+			rotat(int(angle))
+			time.sleep(4)
+			x=True
+        elif int(angle)<45 and x:
+			x=False
+			rotat(int(angle))
+			time.sleep(4)
+			x=True
         e1=e2=1.0
     data = np.fromstring(stream.read(CHUNK,exception_on_overflow = False),
                          dtype=np.int32)

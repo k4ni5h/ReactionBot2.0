@@ -57,3 +57,4 @@ def rotat(angle):
 	neutral()			
 	time.sleep(1)
 	GPIO.cleanup()
+	return;

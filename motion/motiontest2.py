@@ -107,7 +107,7 @@ def happiness():
 	initial_pos = 19  #initial position at 90
 	final_pos = 12    #final position at 126
 	#clockwise(pwm1,initial_pos,final_pos,mtr_time)
-	anticlockwise(pwm2,initial_pos,initial_pos+6,mtr_time)	# Eyelid happy emotion
+	anticlockwise(pwm2,initial_pos,initial_pos+5,mtr_time)	# Eyelid happy emotion
 	
 	#t1=threading.Thread(target=clockwise,args=(pwm1,initial_pos,final_pos,mtr_time,))
 	#t2=threading.Thread(target=anticlockwise,args=(pwm2,initial_pos,initial_pos+2.5,mtr_time,))	# Eyelid happy emotion
@@ -125,7 +125,7 @@ def happiness():
 	#pwm1.ChangeDutyCycle(final_pos)
 	#time.sleep(1)
 	#pwm1.ChangeDutyCycle(0)
-	pwm2.ChangeDutyCycle(initial_pos+6)
+	pwm2.ChangeDutyCycle(initial_pos+5)
 	time.sleep(1)
 	pwm2.ChangeDutyCycle(0)
 	#neutral()
