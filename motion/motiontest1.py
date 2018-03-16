@@ -315,10 +315,12 @@ def nothing():
 	
 	pwm1.ChangeDutyCycle(0)
 	#pwm2.ChangeDutyCycle(0)
+	return;
 	
 def yes():
 	initial_pos = 19  #initial position at 90
 	final_pos = 24    #final position at 126
+	return;
 	
 	#anticlockwise(pwm2,initial_pos,final_pos,mtr_time)
 	#clockwise(pwm2,initial_pos,final_pos,mtr_time)	# face movement

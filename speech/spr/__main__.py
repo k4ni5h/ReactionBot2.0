@@ -4,7 +4,12 @@ m = sr.Microphone()
 
 import requests
 import json
- 
+import numpy as np
+import sys
+
+sys.path.insert(0, '/home/pi/Desktop/ReactionBot2.0/motion/')
+from combine2 import action_f
+
 def analyze_tone(text):
     username = '926325e3-3eea-4494-86c0-c03d1a9deefe'
     password = 'CuExNGBJgChT'
@@ -26,7 +31,14 @@ def display_results(data):
     print([data['document_tone']['tone_categories'][1]['tones'][i]['score'] for i in range(3)])
     print([data['document_tone']['tone_categories'][2]['tones'][i]['tone_name'] for i in range(5)])
     print([data['document_tone']['tone_categories'][2]['tones'][i]['score'] for i in range(5)])
-    print()
+    emotion=[0.0,0.0,0.0,0.0]
+    emotion[0]=max(data['document_tone']['tone_categories'][0]['tones'][3]['score'],data['document_tone']['tone_categories'][2]['tones'][3]['score'])
+    emotion[1]=data['document_tone']['tone_categories'][0]['tones'][4]['score']
+    emotion[2]=max(data['document_tone']['tone_categories'][0]['tones'][0]['score'],data['document_tone']['tone_categories'][0]['tones'][1]['score'])
+    emotion[3]=data['document_tone']['tone_categories'][0]['tones'][2]['score']
+    print(np.array(emotion).argmax())
+    action_f(np.array(emotion).argmax())
+    print('emotion dekh')
 
 def recog(mdata):	
 	if mdata == 'exit'.lower():

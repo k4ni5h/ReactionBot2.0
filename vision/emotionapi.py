@@ -1,12 +1,14 @@
 import requests
 import json
+import numpy as np
 def getemotion() :
     json_resp = requests.post( 'https://api-face.sightcorp.com/api/detect/',
               data  = { 'app_key' : 'e00f8c8746bf4b01b3f33b476cbf1e74' },
-              files = { 'img'     : ( 'filename', open( '/home/pi/Desktop/ReactionBot2.0/vision/Emotion/picam.jpg', 'rb' ) ) } )
+              files = { 'img'     : ( 'filename', open( '/home/pi/Desktop/ReactionBot2.0/vision/picam.jpg', 'rb' ) ) } )
 
-    #print (json_resp.text)
+    print (json_resp.text)
     apiresp =json.loads(json_resp.text)
+    emotion=[0.0,0.0,0.0,0.0]
     for person in apiresp['people']:
         onlyemotion=(person['emotions'])
 #for key,val in onlyemotion.items():
@@ -16,9 +18,17 @@ def getemotion() :
 #del onlyemotion["disgust"]
 
     #print (onlyemotion)
-
-        finalemotion = max(onlyemotion, key=lambda i: onlyemotion[i])
-        return(finalemotion)
+        print(onlyemotion)
+        emotion[0]=max(onlyemotion['happiness'],emotion[0])
+        emotion[1]=max(onlyemotion['sadness'],emotion[1])
+        emotion[2]=max(onlyemotion['anger'],emotion[2])
+        emotion[3]=max(onlyemotion['fear'],emotion[3])
+    print(emotion)
+    if emotion==[0.0,0.0,0.0,0.0]:
+		return(99)
+    else:
+		print(np.array(emotion).argmax())
+		return np.array(emotion).argmax()
 
 
 #if emotion == "happiness":

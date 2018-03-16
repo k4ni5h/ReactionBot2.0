@@ -324,6 +324,7 @@ def nothing():
 	
 	#pwm1.ChangeDutyCycle(0)
 	pwm2.ChangeDutyCycle(0)
+	return;
 	
 def yes():
 	initial_pos = 19  #initial position at 90
@@ -341,3 +342,4 @@ def yes():
 	pwm2.ChangeDutyCycle(final_pos)
 	time.sleep(1)
 	pwm2.ChangeDutyCycle(0)
+	return;

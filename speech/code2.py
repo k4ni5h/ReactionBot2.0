@@ -3,6 +3,10 @@ import numpy as np
 import time
 import math
 
+import sys
+sys.path.insert(0, '/home/pi/Desktop/ReactionBot2.0/motion/')
+from funservo2 import rotat
+
 np.set_printoptions(suppress=True) # don't use scientific notation
 
 CHUNK = 2048 # number of data points to read at a time
@@ -30,7 +34,12 @@ while(True): #to it a few times just to see
     c=time.time()
     if c>=t+0.5:
         t=c
-        print(e1/(e2*1.1),2*math.degrees(math.atan(e1/(e2*1.1)))-90)
+        angle=2*math.degrees(math.atan(e1/(e2*1.1)))-90
+        print(angle)
+        if angle>45:
+			rotat(90-int(angle))
+        if angle<-45:
+			rotat(90-int(angle))
         e1=e2=1.0
     data = np.fromstring(stream.read(CHUNK,exception_on_overflow = False),
                          dtype=np.int32)

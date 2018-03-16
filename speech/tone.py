@@ -60,5 +60,3 @@ def main():
             exit
         else:
             print("Something went wrong")
- 
-main()
