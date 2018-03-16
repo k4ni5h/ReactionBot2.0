@@ -1,5 +1,7 @@
 import RPi.GPIO as GPIO
 import time
+import argparse
+
 #GPIO.setwarning(Fal
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(22,GPIO.OUT)
@@ -51,10 +53,12 @@ def neckrotation (angle1):
         pwm3.ChangeDutyCycle(0)
     return;
 
-def rotat(angle):
-	neckrotation(angle)		
-	time.sleep(2)
-	neutral()			
-	time.sleep(1)
-	GPIO.cleanup()
-	return;
+parser = argparse.ArgumentParser()
+parser.add_argument("echo")
+args = parser.parse_args()
+angle=int(args.echo)
+neckrotation(angle)		
+time.sleep(2)
+neutral()			
+time.sleep(1)
+GPIO.cleanup()

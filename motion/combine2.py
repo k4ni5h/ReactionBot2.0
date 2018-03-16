@@ -9,5 +9,5 @@ def action_f(x):
 	elif(x==3):
 		os.system("python /home/pi/Desktop/ReactionBot2.0/motion/fear.py & python /home/pi/Desktop/ReactionBot2.0/motion/fear1.py & ")
 	return;
-i=int(input())
-action_f(i)
+#i=int(input())
+#action_f(i)

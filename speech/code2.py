@@ -3,10 +3,7 @@ import numpy as np
 import time
 import math
 
-import sys
-
-sys.path.insert(0, '/home/pi/Desktop/ReactionBot2.0/motion/')
-from funservo2 import rotat
+import os
 np.set_printoptions(suppress=True) # don't use scientific notation
 
 CHUNK = 2048 # number of data points to read at a time
@@ -39,13 +36,13 @@ while(True): #to it a few times just to see
         print(angle)
         if int(angle)>135 and x:
 			x=False
-			rotat(int(angle))
-			time.sleep(4)
+			os.system("python /home/pi/Desktop/ReactionBot2.0/motion/funservo2.py 15")
+			time.sleep(2)
 			x=True
         elif int(angle)<45 and x:
 			x=False
-			rotat(int(angle))
-			time.sleep(4)
+			os.system("python /home/pi/Desktop/ReactionBot2.0/motion/funservo2.py 175")
+			time.sleep(2)
 			x=True
         e1=e2=1.0
     data = np.fromstring(stream.read(CHUNK,exception_on_overflow = False),
