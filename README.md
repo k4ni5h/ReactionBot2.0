@@ -21,14 +21,7 @@ Localize a sound source is actually not a easy task as you have a lot of noise i
 # Hardware:
 
 The mechanical design of the bot includes:
-1)	Stepper  Motor (12 volt)(1):</p><div><img src="https://raw.githubusercontent.com/marsiitr/Chess-Playing-Bot/master/images/Page-3-Image-2.jpg"></div></li>
-2)	Servo Motor (6 volt)(x3):</p><div><img src="https://raw.githubusercontent.com/marsiitr/Chess-Playing-Bot/master/images/Page-4-Image-3.jpg"></div></li>
-3)	Arduino Uno(x1):</p><div><img src="https://raw.githubusercontent.com/marsiitr/Chess-Playing-Bot/master/images/Page-4-Image-4.jpg"></div></li>
-4)	Adapter(12V,5A)(x2):</p><div><img src="https://raw.githubusercontent.com/marsiitr/Chess-Playing-Bot/master/images/Page-5-Image-5.jpg"></div></li>
-5)	L298 Motor Drivers(1):</p><div><img src="https://raw.githubusercontent.com/marsiitr/Chess-Playing-Bot/master/images/Page-5-Image-6.jpg"></div></li>
-6)	Gears(x3):</p><div><img src="https://raw.githubusercontent.com/marsiitr/Chess-Playing-Bot/master/images/Page-5-Image-7.jpg"></div></li>
-7)	Combination of LM317 and potentiometer  for voltage regulation:</p><div><img src="https://raw.githubusercontent.com/marsiitr/Chess-Playing-Bot/master/images/Page-6-Image-8.jpg"></div></li>
- 8) Castor Wheels(3):</p><div><img src="https://raw.githubusercontent.com/marsiitr/Chess-Playing-Bot/master/images/Page-6-Image-9.jpg"></div></li>
+1)	Servo Motor (6 volt)(x3):</p><div><img src="https://raw.githubusercontent.com/marsiitr/Chess-Playing-Bot/master/images/Page-4-Image-3.jpg"></div></li>
  
 # Work:
 
@@ -44,13 +37,13 @@ Code is basically divided in 3 parts
 2. Camera - Anant Singh
 3. Motion - Anand Kumar
 
-1. Sound part is basically devided in 2 parts. First is to get sentiment/ work according to sound input. Second is to locate the sound source.
+1. Sound part is basically divided into 2 parts. First is to get sentiment/ work according to sound input. For this, we use Google API to process the sound into text. After that, we use google translate API to translate input into English text. Then with the use of 'IBM Watson Tone Analyzer', we got the sentiment. We successfully implement this in file `tone.py` inside `speech` folder. Second is to locate the sound source. So firstly we find the time gap between two sound inputs (its multiplication with sound speed gives the distance gap) and amplitude ratio (amplitude inversely proportional to the distance) can give the exact angle of the sound source with respect to the bot. It is implemented in `code2.py` inside the `speech` folder.
 
 # Future improvements:
 
 1. We can connect this bot with mobile and after that user will be notified if bot found something uncommon thing is happening at your place.
 
-2.There are many issues with mechanical model like the motor of neck is not perfectly coupled. Due to which we got a lot of issue during exhibition like it is not localizing the source but neck is not rotating according to that value.
+2. There are many issues with the mechanical model like the motor of the neck is not perfectly coupled. Due to which we got a lot of issue during exhibition like it is not localizing the source but neck is not rotating according to that value.
 
 # Team members:
 
