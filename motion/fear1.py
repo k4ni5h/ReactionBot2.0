@@ -1,3 +1,3 @@
-from motiontest2 import fear
+from eyelid_motor_motion import fear
 
 fear()
