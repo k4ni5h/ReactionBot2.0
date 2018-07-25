@@ -80,6 +80,7 @@ Code is basically divided in 3 parts
 
 <ul>
 <li><a href="https://www.facebook.com/Shivamsrivastava1912">Shivam Srivastava</a></li>
+ Models And Robotics Section Secretary 2017-2018.
 </ul>
 
 # Thank You!!!!
