@@ -1,3 +1,3 @@
-from motiontest1 import sadness
+from face_motor_motion import sadness
 
 sadness()

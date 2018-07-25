@@ -2,7 +2,7 @@ import os
 
 import sys
 
-sys.path.insert(0, '/home/pi/Desktop/ReactionBot2.0/vision/')
+sys.path.insert(0, '/home/pi/Desktop/ReactionBot2.0/visionandmusic/')
 from music import playmusic
 from picture import clickcam
 from emotionapi import getemotion
@@ -11,7 +11,7 @@ sys.path.insert(0, '/home/pi/Desktop/ReactionBot2.0/speech/')
 from tone import main
 
 sys.path.insert(0, '/home/pi/Desktop/ReactionBot2.0/motion/')
-from combine2 import action_f
+from emotion_combine import action_f
 
 def cam():
 	clickcam()

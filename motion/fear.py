@@ -1,3 +1,3 @@
-from motiontest1 import fear
+from face_motor_motion import fear
 
 fear()

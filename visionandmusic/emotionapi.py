@@ -4,7 +4,7 @@ import numpy as np
 def getemotion() :
     json_resp = requests.post( 'https://api-face.sightcorp.com/api/detect/',
               data  = { 'app_key' : 'e00f8c8746bf4b01b3f33b476cbf1e74' },
-              files = { 'img'     : ( 'filename', open( '/home/pi/Desktop/ReactionBot2.0/vision/picam.jpg', 'rb' ) ) } )
+              files = { 'img'     : ( 'filename', open( '/home/pi/Desktop/ReactionBot2.0/visionandmusic/picam.jpg', 'rb' ) ) } )
 
     print (json_resp.text)
     apiresp =json.loads(json_resp.text)

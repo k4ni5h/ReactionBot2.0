@@ -1,3 +1,3 @@
-from motiontest2 import happiness
+from eyelid_motor_motion import happiness
 
 happiness()
