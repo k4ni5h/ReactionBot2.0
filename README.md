@@ -50,9 +50,9 @@ Explanation
 
 1. Sound part is basically divided into 2 parts. First is to get sentiment/ work according to sound input. For this, we use Google API to process the sound into text. After that, we use google translate API to translate input into English text. Then with the use of 'IBM Watson Tone Analyzer', we got the sentiment. We successfully implement this in file `tone.py` inside `speech` folder. Second is to locate the sound source. So firstly we find the time gap between two sound inputs (its multiplication with sound speed gives the distance gap) and amplitude ratio (amplitude inversely proportional to the distance) can give the exact angle of the sound source with respect to the bot. It is implemented in `code2.py` inside the `speech` folder.
 
-2.camera - The camera used in the bot is picam and it takes pictures of the person which is sent to the Sightcorp face api to get its emotion.
+2. camera - The camera used in the bot is picam and it takes pictures of the person which is sent to the Sightcorp face api to get its emotion.
 
-3.Motion - The face and the body of bot moves as per the environment. The face uses 3 Servo Motors to show reaction of bot and it uses 2 stepper motors to walk.
+3. Motion - The face and the body of bot moves as per the environment. The face uses 3 Servo Motors to show reaction of bot and it uses 2 stepper motors to walk.
 
 # Future improvements:
 
@@ -60,7 +60,7 @@ Explanation
 
 2. There are many issues with the mechanical model like the motor of the neck is not perfectly coupled. Due to which we got a lot of issue during exhibition like it is not localizing the source but neck is not rotating according to that value.
 
-3.The bot can be used as a music player,to do home automation and indoor security as it can make ,take video/pictures , understand environment and act accordingly.
+3. The bot can be used as a music player,to do home automation and indoor security as it can make ,take video/pictures , understand environment and act accordingly.
 
 # Team members:
 
@@ -83,7 +83,7 @@ Explanation
 
 <ul>
 <li><a href="https://www.facebook.com/Shivamsrivastava1912">Shivam Srivastava</a></li>
- Models And Robotics Section Secretary 2017-2018.
+[Models And Robotics Section Secretary 2017-2018.]
 </ul>
 
 # Thank You!!!!
